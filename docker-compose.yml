@@ -1,0 +1,20 @@
+version: '3.7'
+networks:
+  component_net:
+    driver: bridge
+    external: true
+services:
+  photo:
+    build: .
+    container_name: photo
+    image: photo
+    networks:
+      - component_net
+    restart: always
+    stdin_open: true
+    tty: true
+    privileged: true
+    ports:
+      - '8082:8082'
+    volumes:
+      - .:/workspace
